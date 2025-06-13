@@ -1,2 +1,2 @@
-local version = '6'
+local version = '7'
 print(version)
