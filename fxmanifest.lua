@@ -3,5 +3,5 @@ game 'gta5'
 
 version '1'
 
-client_script 'client.lua'
-server_script 'server.lua'
+client_script 'client/client.lua'
+server_script 'server/server.lua'
