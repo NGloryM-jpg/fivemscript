@@ -125,6 +125,6 @@ end)
 
 Citizen.Wait(5000)
 
-RegisterCommand('s', function()
+RegisterCommand('aga', function()
     print('s')
 end)
