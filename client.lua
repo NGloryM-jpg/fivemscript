@@ -1,4 +1,4 @@
-local version = '1.2.10'
-RegisterCommand('testt', function()
+local version = '2'
+RegisterCommand('a', function()
     print('a')
 end)
