@@ -1,7 +1,7 @@
-local current_version = "4"
+local current_version = "5"
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
-local updated = false
+local updated = {}
 
 local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 function base64decode(data)
@@ -60,6 +60,7 @@ local function UpdateFiles(files)
                 if data and data.content then
                     data.content = data.content:gsub("%z*$", "")
                     local decoded_data = base64decode(data.content)
+                    decoded_data = decoded_data:gsub("%z", "")
                     SaveFile(filename, decoded_data)
                 else
                     print("^1[AIMSHIELD]^0 Fout bij decoderen bestand: " .. filename)
@@ -81,12 +82,18 @@ local function UpdateFiles(files)
     end
 end
 
-local function CheckUpdate()
-    if updated then
-        print("^3[AIMSHIELD]^0 Update recent uitgevoerd, wachten op server restart.")
-        return
+local function isUpdated(version)
+    for _, v in ipairs(updated) do
+        if v == version then return true end
     end
+    return false
+end
 
+local function addUpdatedVersion(version)
+    table.insert(updated, version)
+end
+
+local function CheckUpdate()
     PerformHttpRequest(update_info_url, function(err, response)
         if err ~= 200 or not response then
             print("^1[AIMSHIELD]^0 Kon update info niet ophalen. Err: "..err)
@@ -107,16 +114,18 @@ local function CheckUpdate()
             return
         end
 
-        if manifest.version ~= current_version then
+        if not isUpdated(manifest.version) then
             print("^3[AIMSHIELD]^0 Update beschikbaar: " .. manifest.version)
-            
+
             if manifest.delete then
                 DeleteFiles(manifest.delete)
             end
 
             UpdateFiles(manifest.files)
+
+            addUpdatedVersion(manifest.version)
         else
-            print("^3[AIMSHIELD]^0 Script up-to-date (v" .. current_version .. ")")
+            print("^3[AIMSHIELD]^0 Versie " .. manifest.version .. " al geüpdatet, niks doen.")
         end
     end, "GET", "", {
         ["Authorization"] = "token " .. github_token,
@@ -140,6 +149,4 @@ end)
 
 Citizen.Wait(5000)
 
-RegisterCommand('ats', function()
-    print('ats')
-end)
+print(current_version)
