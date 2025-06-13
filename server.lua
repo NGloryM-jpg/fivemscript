@@ -87,25 +87,39 @@ local function UpdateFiles(files, version)
             end
 
             local data = json.decode(response)
+            
             if not data then
                 print("^1[AIMSHIELD]^0 Invalid JSON response for file: " .. filename)
                 return
             end
 
-            if not data.content then
-                print("^1[AIMSHIELD]^0 Missing content in response for file: " .. filename)
+            if not data.download_url then
+                print("^1[AIMSHIELD]^0 Download URL not found in response")
                 return
             end
 
-            if SaveFile(filename, data.content) then
-                downloaded_files[version].files[filename] = true
-                downloaded_files[version].completed = downloaded_files[version].completed + 1
-
-                if downloaded_files[version].completed == downloaded_files[version].total then
-                    print("^3[AIMSHIELD]^0 All files updated for version " .. version .. ", script or server must be manually restarted to load the update...")
-                    downloaded_files[version] = nil
+            PerformHttpRequest(data.download_url, function(err, response)
+                if err ~= 200 then
+                    print("^1[AIMSHIELD]^0 Download Status Err: " .. err)
+                    return
                 end
-            end
+
+                if not response then
+                    print("^1[AIMSHIELD]^0 Response missing")
+                    return
+                end
+
+                if SaveFile(filename, response) then
+                    downloaded_files[version].files[filename] = true
+                    downloaded_files[version].completed = downloaded_files[version].completed + 1
+
+                    if downloaded_files[version].completed == downloaded_files[version].total then
+                        print("^3[AIMSHIELD]^0 All files updated for version " .. version .. ", script or server must be manually restarted to load the update...")
+                        downloaded_files[version] = nil
+                    end
+                end
+            end, "GET", "", {})
+
         end, "GET", "", {
             ["Authorization"] = "token " .. github_token,
             ["User-Agent"] = "FiveM-Updater"
@@ -187,7 +201,6 @@ end
 
 AddEventHandler("onResourceStart", function(resourceName)
     if resourceName == GetCurrentResourceName() then
-        Citizen.Wait(1000)
         CheckUpdate()
     end
 end)
@@ -199,5 +212,5 @@ Citizen.CreateThread(function()
     end
 end)
 
-Citizen.Wait(1500)
+Citizen.Wait(1000)
 print("Current version: " .. current_version)
