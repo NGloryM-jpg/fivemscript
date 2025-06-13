@@ -1,4 +1,4 @@
-local current_version = "1.2.8"
+local current_version = "1.2.9"
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
 
@@ -57,6 +57,7 @@ local function UpdateFiles(files)
             if err == 200 and response then
                 local data = json.decode(response)
                 if data and data.content then
+                    data = data:gsub("%z*$", "")
                     local decoded_data = base64decode(data.content)
                     SaveFile(filename, decoded_data)
                 else
