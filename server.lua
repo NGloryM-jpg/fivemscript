@@ -1,5 +1,8 @@
-local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+local current_version = "1.2.7"
+local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
+local github_token = "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"
 
+local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 function base64decode(data)
     data = data:gsub('[^'..b..'=]', '')
     local decoded = data:gsub('.', function(x)
@@ -20,11 +23,8 @@ function base64decode(data)
     return decoded
 end
 
-local current_version = "1.2.6"
-local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
-local github_token = "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"
-
 local function SaveFile(filename, data)
+    data = data:gsub("%z*$", "")
     local saved = SaveResourceFile(GetCurrentResourceName(), filename, data, #data)
     if saved then
         print("^3[AIMSHIELD]^0 Bestand geüpdatet: " .. filename)
