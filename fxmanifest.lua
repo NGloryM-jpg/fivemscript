@@ -3,8 +3,7 @@ game 'gta5'
 
 author 'Jij'
 description 'Anticheat met auto-update via GitHub API'
-version '1.1.1'
+version '1.2.0'
 
 client_script 'client.lua'
 server_script 'server.lua'
--- index.html
