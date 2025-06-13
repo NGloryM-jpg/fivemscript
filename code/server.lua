@@ -1,4 +1,5 @@
-local current_version = "2.2.2"
+local current_version = "2.2.3"
+print('test')
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
 local updated = {}
@@ -212,8 +213,6 @@ Citizen.CreateThread(function()
     end
 end)
 
-Citizen.Wait(5000)
-print("file updated!")
 Citizen.CreateThread(function()
     local framework = nil
     local startTime = GetGameTimer()
