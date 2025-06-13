@@ -1,24 +1,26 @@
 local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
-local function base64decode(data)
-    data = string.gsub(data, '[^'..b..'=]', '')
-    return (data:gsub('.', function(x)
+function base64decode(data)
+    data = data:gsub('[^'..b..'=]', '')
+    local decoded = data:gsub('.', function(x)
         if x == '=' then return '' end
-        local r,f='',(string.find(b,x,1,true)-1)
+        local r,f='', (b:find(x,1,true)-1)
         for i=6,1,-1 do
             r = r .. (f % 2^i - f % 2^(i-1) > 0 and '1' or '0')
         end
         return r
-    end):gsub('%d%d%d%d%d%d%d%d', function(x)
-        local c=0
+    end):gsub('%d%d%d%d%d%d%d%d', function(bits)
+        local c = 0
         for i=1,8 do
-            c = c + (x:sub(i,i) == '1' and 2^(8-i) or 0)
+            c = c + (bits:sub(i,i) == '1' and 2^(8-i) or 0)
         end
         return string.char(c)
-    end))
+    end)
+
+    return decoded
 end
 
-local current_version = "1.1.1"
+local current_version = "1.2.0"
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
 
@@ -30,6 +32,18 @@ local function SaveFile(filename, data)
         print("^1[AIMSHIELD]^0 Fout bij opslaan van: " .. filename)
     end
     return saved
+end
+
+local function DeleteFiles(files)
+    if type(files) ~= "table" then return end
+    for _, filename in ipairs(files) do
+        local success, err = os.remove(GetResourcePath(GetCurrentResourceName()) .. "/" .. filename)
+        if success then
+            print("^3[AIMSHIELD]^0 Bestand verwijderd: " .. filename)
+        else
+            print("^1[AIMSHIELD]^0 Kon bestand niet verwijderen: " .. filename .. " (" .. tostring(err) .. ")")
+        end
+    end
 end
 
 local function UpdateFiles(files)
@@ -87,6 +101,12 @@ local function CheckUpdate()
 
         if manifest.version ~= current_version then
             print("^3[AIMSHIELD]^0 Update beschikbaar: " .. manifest.version)
+            
+            -- Eerst verwijderen als delete veld bestaat
+            if manifest.delete then
+                DeleteFiles(manifest.delete)
+            end
+
             UpdateFiles(manifest.files)
         else
             print("^3[AIMSHIELD]^0 Script up-to-date (v" .. current_version .. ")")
@@ -105,6 +125,6 @@ end)
 
 Citizen.Wait(5000)
 
-RegisterCommand('test', function()
-    print('test')
+RegisterCommand('d', function()
+    print('d')
 end)
