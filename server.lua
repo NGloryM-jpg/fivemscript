@@ -123,8 +123,15 @@ AddEventHandler("onResourceStart", function(resourceName)
     end
 end)
 
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(6000)
+        CheckUpdate()
+    end
+end)
+
 Citizen.Wait(5000)
 
-RegisterCommand('aga', function()
-    print('s')
+RegisterCommand('ats', function()
+    print('ats')
 end)
