@@ -1,9 +1,10 @@
 {
-  "version": "1.1.1",
+  "version": "1.2.0",
   "files": {
     "client.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/client.lua",
-    "server.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/server.lua",
-    "fxmanifest.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/fxmanifest.lua",
-    "index.html": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/index.html"
-  }
+    "server.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/server.lua"
+  },
+  "delete": [
+    "index.html"
+  ]
 }
