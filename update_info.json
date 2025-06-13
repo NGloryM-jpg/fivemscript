@@ -3,7 +3,10 @@
   "files": {
     "code/client.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/code/client.lua",
     "code/server.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/code/server.lua",
-    "fxmanifest.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/fxmanifest.lua"
+    "fxmanifest.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/fxmanifest.lua",
+    "files/ui/index.html": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/files/ui/index.html",
+    "files/ui/style.css": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/files/ui/style.css",
+    "files/ui/script.js": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/files/ui/script.js"
   },
   "delete": []
 }
