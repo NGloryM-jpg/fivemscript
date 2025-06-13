@@ -72,7 +72,6 @@ local function UpdateFiles(files)
             downloaded_count = downloaded_count + 1
             if downloaded_count == files_count then
                 print("^3[AIMSHIELD]^0 Alle bestanden geüpdatet, resource wordt herstart...")
-                updated = true
                 print("^3[AIMSHIELD]^0 Server moet handmatig herstart worden om update te laden.")
             end
         end, "GET", "", {
