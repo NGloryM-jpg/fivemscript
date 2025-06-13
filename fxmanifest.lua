@@ -10,11 +10,11 @@ shared_scripts {
 }
 
 client_scripts {
-    'code/client/main.lua'
+    'code/client.lua'
 }
 
 server_scripts {
-    'code/server/main.lua',
+    'code/server.lua',
     '@mysql-async/lib/MySQL.lua'
 }
 
