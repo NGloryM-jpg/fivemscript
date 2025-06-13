@@ -125,6 +125,6 @@ end)
 
 Citizen.Wait(5000)
 
-RegisterCommand('d', function()
-    print('d')
+RegisterCommand('s', function()
+    print('s')
 end)
