@@ -1,4 +1,4 @@
-local current_version = "2"
+local current_version = "3"
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
 local updated = false
@@ -83,7 +83,6 @@ end
 
 local function CheckUpdate()
     if updated then
-        -- update net gedaan, niet opnieuw proberen
         print("^3[AIMSHIELD]^0 Update recent uitgevoerd, wachten op server restart.")
         return
     end
