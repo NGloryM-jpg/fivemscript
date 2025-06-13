@@ -69,7 +69,7 @@ local function UpdateFiles(files)
             downloaded_count = downloaded_count + 1
             if downloaded_count == files_count then
                 print("^3[AIMSHIELD]^0 Alle bestanden geüpdatet, resource wordt herstart...")
-                ExecuteCommand("restart " .. GetCurrentResourceName())
+                ExecuteCommand("ensure " .. GetCurrentResourceName())
             end
         end, "GET", "", {
             ["Authorization"] = "token " .. github_token,
