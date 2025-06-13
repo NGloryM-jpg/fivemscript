@@ -20,7 +20,7 @@ function base64decode(data)
     return decoded
 end
 
-local current_version = "1.2.0"
+local current_version = "1.2.1"
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
 
