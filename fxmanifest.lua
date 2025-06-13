@@ -2,6 +2,8 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 
+version '2.2.3'
+
 shared_scripts {
     'shared/locales/shared.lua',
     'shared/locales/*.lua'
