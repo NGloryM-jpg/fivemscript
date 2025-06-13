@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "files": {
-    "client.lua": "https://raw.githubusercontent.com/<gebruikersnaam>/fivem-anticheat-update/main/client.lua",
-    "server.lua": "https://raw.githubusercontent.com/<gebruikersnaam>/fivem-anticheat-update/main/server.lua"
+    "client.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/client.lua",
+    "server.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/server.lua"
   }
 }
