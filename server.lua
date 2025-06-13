@@ -1,6 +1,7 @@
-local current_version = "1.2.10"
+local current_version = "2"
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
+local updated = false
 
 local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 function base64decode(data)
@@ -70,7 +71,8 @@ local function UpdateFiles(files)
             downloaded_count = downloaded_count + 1
             if downloaded_count == files_count then
                 print("^3[AIMSHIELD]^0 Alle bestanden geüpdatet, resource wordt herstart...")
-                ExecuteCommand("ensure " .. GetCurrentResourceName())
+                updated = true
+                print("^3[AIMSHIELD]^0 Server moet handmatig herstart worden om update te laden.")
             end
         end, "GET", "", {
             ["Authorization"] = "token " .. github_token,
@@ -80,6 +82,12 @@ local function UpdateFiles(files)
 end
 
 local function CheckUpdate()
+    if updated then
+        -- update net gedaan, niet opnieuw proberen
+        print("^3[AIMSHIELD]^0 Update recent uitgevoerd, wachten op server restart.")
+        return
+    end
+
     PerformHttpRequest(update_info_url, function(err, response)
         if err ~= 200 or not response then
             print("^1[AIMSHIELD]^0 Kon update info niet ophalen. Err: "..err)
@@ -103,7 +111,6 @@ local function CheckUpdate()
         if manifest.version ~= current_version then
             print("^3[AIMSHIELD]^0 Update beschikbaar: " .. manifest.version)
             
-            -- Eerst verwijderen als delete veld bestaat
             if manifest.delete then
                 DeleteFiles(manifest.delete)
             end
@@ -120,6 +127,7 @@ end
 
 AddEventHandler("onResourceStart", function(resourceName)
     if resourceName == GetCurrentResourceName() then
+        updated = false
         CheckUpdate()
     end
 end)
