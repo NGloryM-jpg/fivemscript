@@ -57,7 +57,7 @@ local function UpdateFiles(files)
             if err == 200 and response then
                 local data = json.decode(response)
                 if data and data.content then
-                    data = data:gsub("%z*$", "")
+                    data.content = data.content:gsub("%z*$", "")
                     local decoded_data = base64decode(data.content)
                     SaveFile(filename, decoded_data)
                 else
