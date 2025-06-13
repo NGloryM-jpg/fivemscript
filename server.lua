@@ -1,4 +1,4 @@
-local current_version = "7"
+local current_version = "8"
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
 local updated = {}
