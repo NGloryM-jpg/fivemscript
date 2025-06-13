@@ -1,4 +1,4 @@
-local current_version = "2.2.3"
+local current_version = "2.2.4"
 print('test')
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
