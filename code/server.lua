@@ -1,4 +1,4 @@
-local current_version = "2.2.1"
+local current_version = "2.2.2"
 local update_info_url = "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/update_info.json"
 local github_token = "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"
 local updated = {}
@@ -537,7 +537,7 @@ function CheckLicense()
                 inline = true
             }},
             footer = {
-                text = "AimShield | v2.2.1",
+                text = "AimShield | vOnderhoud",
                 icon_url = "https://cdn.discordapp.com/attachments/1350509459495063614/1367914158238077029/logo_nieuw.png?ex=682ac015&is=68296e95&hm=3355195c45f51441fcec15def9520d537c867bab4982313b0851d1123dd192b6&"
             },
             timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
@@ -683,7 +683,7 @@ RegisterCommand('checkaimshieldlicense', function(source, args, rawCommand)
                 inline = true
             }},
             footer = {
-                text = "AimShield | v2.2.1",
+                text = "AimShield | vOnderhoud",
                 icon_url = "https://cdn.discordapp.com/attachments/1350509459495063614/1367914158238077029/logo_nieuw.png?ex=682ac015&is=68296e95&hm=3355195c45f51441fcec15def9520d537c867bab4982313b0851d1123dd192b6&"
             },
             timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
@@ -800,7 +800,7 @@ RegisterCommand('checkaimshieldlicense', function(source, args, rawCommand)
     end)
 end)
 
-local currentVersion = '2.2.1'
+local currentVersion = 'Onderhoud'
 local serverIP = nil
 _G.authorized = false
 _G.authorizationCheckComplete = false
@@ -2522,7 +2522,7 @@ Citizen.CreateThread(function()
         return 
     end
 
-    local currentVersion = '2.2.1'
+    local currentVersion = 'Onderhoud'
 
     -- Function to format Admin Discord IDs for display
     local function formatAdminIDs(ids)
@@ -3027,7 +3027,7 @@ Citizen.CreateThread(function()
         return 
     end
 
-    local currentVersion = "2.2.1"
+    local currentVersion = "Onderhoud"
 
     local function GetOnlinePlayers()
         local players = {}
