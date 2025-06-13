@@ -134,7 +134,6 @@ end
 
 AddEventHandler("onResourceStart", function(resourceName)
     if resourceName == GetCurrentResourceName() then
-        updated = false
         CheckUpdate()
     end
 end)
