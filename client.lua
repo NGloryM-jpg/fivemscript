@@ -1,4 +1,4 @@
-local version = '1.2.7'
+local version = '1.2.8'
 RegisterCommand('testt', function()
-    print('testt')
+    print('a')
 end)
