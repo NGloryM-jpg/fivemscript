@@ -1,4 +1,4 @@
-local current_version = "1.0.0"
+local current_version = "1.1.0"
 local update_info_url = "https://raw.githubusercontent.com/<gebruikersnaam>/fivem-anticheat-update/main/update_info.json"
 
 local function SaveFile(filename, data)
@@ -67,4 +67,4 @@ AddEventHandler("onResourceStart", function(resourceName)
 end)
 
 -- Normale scriptcode hieronder, bijvoorbeeld:
-print("^2[Anticheat]^0 Server script geladen en draait.")
+print("^2[Anticheat]^0 Server script geladen en draait 1.1 test.")
