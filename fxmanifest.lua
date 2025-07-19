@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 
-version '2.2.2'
+version '2.3.0'
 
 shared_scripts {
     'shared/locales/shared.lua',
@@ -24,6 +24,5 @@ files {
     'files/ui/index.html',
     'files/ui/style.css',
     'files/sound/notification.mp3',
-    'files/ui/script.js',
-    'files/ui/logo.png'
+    'files/ui/script.js'
 }
