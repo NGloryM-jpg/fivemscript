@@ -1,78 +1,55 @@
 # AimShield FiveM Script
 
-**AimShield** is an advanced anti-aimbot detection solution designed exclusively for FiveM servers. It detects cheats such as aimbot, silent aimbot, and aimlock in real time and provides detailed logs so you can take informed action to maintain fair gameplay.
+**AimShield** is an advanced silent aimbot detection solution for FiveM servers. The latest version is fully managed via a web dashboard, with automatic updates, API integration, and extensive logging.
 
 ## Table of Contents
-
 - [Overview](#overview)
 - [Installation](#installation)
-- [Configuration](#configuration)
+- [Configuration & Dashboard](#configuration--dashboard)
 - [Usage](#usage)
-- [Troubleshooting](#troubleshooting)
+- [Migration & Database](#migration--database)
 - [Support](#support)
-- [License](#license)
 
 ## Overview
-
-AimShield is built to protect your FiveM server by detecting common cheating methods. While it does not automatically block cheaters, it provides instant alerts and comprehensive logs to help you maintain control of your server. All packages (1 Week, 1 Month, Lifetime) offer robust detection features to ensure a fair gaming environment.
+- Detects silent aimbot.
+- Fully automatic updates.
+- Only authorized servers can run the script.
+- All settings are managed through the web dashboard: [aimshield.xyz/signin](https://aimshield.xyz/signin) (log in first, you will be redirected to the dashboard)
+- Full logging to Discord webhooks (bans, connections, disconnects, detections).
+- Automatic support for both ESX & QBCore frameworks.
 
 ## Installation
-
-1. **Download the Script:**  
-   After purchasing a package via our Tebex store, download the AimShield script from your account.
-
-2. **Place the Script:**  
-   Copy the downloaded AimShield folder into your server's `resources` directory.
-
-3. **Server Configuration:**  
-   Add the following line to your `server.cfg` file to ensure the script starts when your server boots up:
+1. **Download:** After purchase via Tebex, download the AimShield folder.
+2. **Place in resources:** Put the folder in your server's `resources` directory.
+3. **Start in server.cfg:**
    ```plaintext
    ensure init-Frost
    ```
-   Make sure that the resource name in your `server.cfg` matches the folder name.
+4. **Dependencies:**
+   - **MySQL-Async** (only needed for migrating old bans; not required for new installs)
 
-4. **Dependencies:**  
-   AimShield requires the following resources:
-   - **Screenshot-Basic:** Essential for capturing evidence during cheat detection.
-   - **txAdmin:** Recommended for seamless server management and to enable in-game menu permissions and notifications.  
-   - **Custom Permissions:** Alternatively, you can use custom permissions by adding Discord IDs directly in the configuration. This allows you to manage permissions without txAdmin.
-
-## Configuration
-
-- **Configuration Method:**  
-  AimShield is configured through the web dashboard:
-  - Main settings: [aimshield.xyz/login](https://aimshield.xyz/dashboard/settings)
-  - Database settings: [aimshield.xyz/login](https://aimshield.xyz/dashboard/settings/database)
-
-  All configuration is now managed through the web interface for easier management and updates.
-
-- **Adjust Settings:**  
-  Modify detection thresholds, logging options, and other parameters through the web dashboard. Detailed instructions are provided in the documentation included with the resource.
+## Configuration & Dashboard
+- **All settings via web:**
+  - Go to [aimshield.xyz/signin](https://aimshield.xyz/signin) and log in. You will be redirected to the dashboard to configure database, detection, logging, languages, admins, and more.
+- **No local config files:** Everything is fetched automatically from the API.
+- **Admin management:** Add admins via the **Admins page** in the dashboard using Discord ID, username, or email for admin privileges (e.g., in-game popups).
 
 ## Usage
+- **Detection & logging:**
+  - Silent aimbot detections are automatically logged and (optionally) banned according to your dashboard settings.
+  - All logs, bans, connections, and disconnects are sent to your configured Discord webhooks.
+- **In-game popups:** Admins (set via the Admins page) receive in-game popups for important events. All other management and features are handled via the website/dashboard.
+- **Automatic updates:** The script updates itself; just restart after an update.
 
-- **Real-Time Monitoring:**  
-  Once installed, AimShield will automatically begin monitoring your server for suspicious activity. When a cheat is detected, you will receive instant alerts along with detailed logs.
-
-- **Log Review:**  
-  Use the log files (discord webhook link) or the in-game admin panel to review detected incidents and take appropriate action.
-
-- **Updates:**  
-  AimShield is regularly updated to handle new cheating methods. Always check our website [aimshield.xyz](https://aimshield.xyz) or our support channels for the latest releases and update instructions.
-
-## Troubleshooting
-
-- **Script Fails to Start:**  
-  Ensure the script folder is correctly placed in the `resources` directory and that your `server.cfg` includes the correct `ensure init-Frost` command.
-
-- **Logging Issues:**  
-  Verify that the log file path (discord webhook link) exists and that your server has the necessary write permissions.
+## Migration & Database
+- **Migrate old bans:**
+  - Use the command `migrateaimshieldbans confirm` in the server console to migrate old bans to the new API.
+- **Database cleanup:**
+  - Use `migrateaimshielddatabase confirm` to safely remove old tables.
 
 ## Support
-
-For any questions or assistance, please reach out to us:
-
 - **Email:** aimshield2025@gmail.com
-- **Discord:** [Join our Discord server](https://discord.gg/aimshield)
+- **Discord:** [Join our Discord](https://discord.gg/aimshield)
+- **Website & Dashboard:** [aimshield.xyz/signin](https://aimshield.xyz/signin)
 
-For more details, updates, and documentation, please visit our website at [aimshield.xyz](https://aimshield.xyz).
+For the latest updates, documentation, and dashboard access: [aimshield.xyz/signin](https://aimshield.xyz/signin)
