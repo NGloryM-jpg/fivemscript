@@ -1,5 +1,5 @@
 {
-  "version": "2.3.3",
+  "version": "2.3.2",
   "files": {
     "code/client.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/code/client.lua",
     "code/server.lua": "https://api.github.com/repos/NGloryM-jpg/fivemscript/contents/code/server.lua",
